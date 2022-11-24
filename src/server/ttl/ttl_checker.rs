@@ -139,7 +139,7 @@ impl<E: KvEngine, R: RegionInfoProvider> RunnableWithTimer for TTLChecker<E, R> 
     fn get_interval(&self) -> Duration {
         self.poll_interval
     }
-}
+
 
 pub fn check_ttl_and_compact_files<E: KvEngine>(
     engine: &E,
@@ -170,10 +170,12 @@ pub fn check_ttl_and_compact_files<E: KvEngine>(
             .inc();
         return;
     }
-    for (file_name, prop) in res {
-        if prop.max_expire_ts <= current_ts {
-            files.push(file_name);
-        }
+    // for (file_name, prop) in res {
+    for file_name in res {
+        // if prop.max_expire_ts <= current_ts {
+        //     files.push(file_name);
+        // }
+        files.push(file_name);
     }
     if files.is_empty() {
         TTL_CHECKER_ACTIONS_COUNTER_VEC

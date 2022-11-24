@@ -14,5 +14,6 @@ pub trait TtlPropertiesExt {
         cf: &str,
         start_key: &[u8],
         end_key: &[u8],
-    ) -> Result<Vec<(String, TtlProperties)>>;
+    // ) -> Result<Vec<(String, TtlProperties)>>;
+    ) -> Result<Vec<String>>;
 }
